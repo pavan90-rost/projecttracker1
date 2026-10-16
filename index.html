@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Login</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login</title>
 </head>
 <body>
-<h2>Login</h2>
-<input type="email" placeholder="Email">
-<br><br>
-<input type="password" placeholder="Password">
-<br><br>
-<button>Login</button>
+  <h2>Login</h2>
+  <form id="login-form">
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" autocomplete="username" required>
+    <br><br>
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password" autocomplete="current-password" required>
+    <br><br>
+    <button id="login-button" type="submit">Login</button>
+    <p id="login-status" role="status" aria-live="polite"></p>
+  </form>
+  <script type="module" src="./firebase-auth.js"></script>
 </body>
 </html>
