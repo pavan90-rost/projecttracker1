@@ -1,22 +1,130 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login</title>
+  <meta name="theme-color" content="#f5f7fb">
+  <title>Project Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <h2>Login</h2>
-  <form id="login-form">
-    <label for="email">Email</label>
-    <input id="email" name="email" type="email" autocomplete="username" required>
-    <br><br>
-    <label for="password">Password</label>
-    <input id="password" name="password" type="password" autocomplete="current-password" required>
-    <br><br>
-    <button id="login-button" type="submit">Login</button>
-    <p id="login-status" role="status" aria-live="polite"></p>
-  </form>
+  <main id="auth-view" class="auth-layout">
+    <section class="auth-brand" aria-label="Project Tracker introduction">
+      <a class="brand brand-light" href="./" aria-label="Project Tracker home">
+        <span class="brand-mark" aria-hidden="true">P</span>
+        <span>project<span class="brand-accent">tracker</span></span>
+      </a>
+      <div class="brand-copy">
+        <span class="eyebrow">YOUR WORK, IN FOCUS</span>
+        <h1>Make every project<br>move forward.</h1>
+        <p>A calmer, clearer way to keep your plans on track and your team moving in the same direction.</p>
+      </div>
+      <div class="brand-footnote"><span class="live-dot"></span> A little more clarity, every day.</div>
+      <div class="decor decor-one"></div>
+      <div class="decor decor-two"></div>
+    </section>
+
+    <section class="auth-panel">
+      <div class="auth-card">
+        <a class="brand brand-mobile" href="./" aria-label="Project Tracker home">
+          <span class="brand-mark" aria-hidden="true">P</span>
+          <span>project<span class="brand-accent">tracker</span></span>
+        </a>
+        <span class="eyebrow">GET STARTED</span>
+        <h2 id="auth-heading">Welcome back</h2>
+        <p class="auth-intro" id="auth-intro">Sign in to pick up where you left off.</p>
+
+        <form id="auth-form">
+          <label for="email">Email address</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" placeholder="At least 6 characters" autocomplete="current-password" minlength="6" required>
+
+          <button id="auth-submit" class="button button-primary button-wide" type="submit">Sign in <span aria-hidden="true">→</span></button>
+        </form>
+
+        <p class="auth-switch">
+          <span id="auth-switch-prompt">New to Project Tracker?</span>
+          <button id="auth-switch" class="text-button" type="button">Create an account</button>
+        </p>
+        <p id="auth-status" class="notice" role="status" aria-live="polite" hidden></p>
+        <p class="privacy-note"><span aria-hidden="true">⌑</span> Your projects are private to your account.</p>
+      </div>
+      <footer class="auth-footer">Simple tools for work that matters.</footer>
+    </section>
+  </main>
+
+  <main id="app-view" class="app-shell" hidden>
+    <aside class="sidebar">
+      <a class="brand brand-light" href="./" aria-label="Project Tracker home">
+        <span class="brand-mark" aria-hidden="true">P</span>
+        <span>project<span class="brand-accent">tracker</span></span>
+      </a>
+      <div class="sidebar-section-label">WORKSPACE</div>
+      <a class="nav-link nav-link-active" href="#projects"><span aria-hidden="true">▦</span> Overview</a>
+      <div class="sidebar-bottom">
+        <div class="sidebar-note"><span class="note-icon" aria-hidden="true">✦</span><strong>Stay in your flow</strong><p>Your next big thing starts with one clear step.</p></div>
+        <div class="user-summary">
+          <span id="user-avatar" class="avatar">U</span>
+          <span class="user-email-wrap"><span class="user-label">SIGNED IN AS</span><span id="user-email" class="user-email"></span></span>
+          <button id="logout-button" class="icon-button" type="button" aria-label="Sign out" title="Sign out">↪</button>
+        </div>
+      </div>
+    </aside>
+
+    <section class="main-content">
+      <header class="topbar">
+        <div class="breadcrumbs">Workspace <span>/</span> <strong>Overview</strong></div>
+        <div class="topbar-user"><span id="topbar-avatar" class="avatar avatar-small">U</span><span id="topbar-email"></span></div>
+      </header>
+      <div class="page-content">
+        <div class="welcome-row">
+          <div>
+            <span class="eyebrow">YOUR WORKSPACE</span>
+            <h1>Good to have you here<span class="heading-period">.</span></h1>
+            <p class="page-subtitle">Keep an eye on the work in motion and what comes next.</p>
+          </div>
+          <a class="date-chip" href="#projects"><span aria-hidden="true">◷</span> <span id="today-date"></span></a>
+        </div>
+        <p id="app-status" class="notice" role="status" aria-live="polite" hidden></p>
+
+        <section class="stats-grid" aria-label="Project summary">
+          <article class="stat-card"><div class="stat-top"><span>Total projects</span><span class="stat-icon icon-blue" aria-hidden="true">▦</span></div><strong id="stat-total">—</strong><span class="stat-caption">Across your workspace</span></article>
+          <article class="stat-card"><div class="stat-top"><span>In progress</span><span class="stat-icon icon-amber" aria-hidden="true">◷</span></div><strong id="stat-progress">—</strong><span class="stat-caption">Work currently moving</span></article>
+          <article class="stat-card"><div class="stat-top"><span>Completed</span><span class="stat-icon icon-green" aria-hidden="true">✓</span></div><strong id="stat-completed">—</strong><span class="stat-caption">Milestones reached</span></article>
+        </section>
+
+        <section class="projects-section" id="projects">
+          <div class="section-heading">
+            <div><span class="eyebrow">YOUR PIPELINE</span><h2>Projects</h2><p class="section-subtitle">Everything you’re moving forward, all in one place.</p></div>
+            <button id="new-project-button" class="button button-primary" type="button"><span aria-hidden="true">＋</span> New project</button>
+          </div>
+
+          <form id="project-form" class="project-form" hidden>
+            <div class="form-heading"><div><span class="eyebrow">PROJECT DETAILS</span><h3 id="project-form-title">Create a project</h3></div><button id="cancel-project-button" class="icon-button close-button" type="button" aria-label="Cancel project form">×</button></div>
+            <div class="form-grid">
+              <div class="field field-full"><label for="project-name">Project name</label><input id="project-name" name="name" type="text" maxlength="100" placeholder="e.g. Website redesign" required></div>
+              <div class="field field-full"><label for="project-description">Description <span class="optional-label">Optional</span></label><textarea id="project-description" name="description" rows="3" maxlength="2000" placeholder="What is this project about?"></textarea></div>
+              <div class="field"><label for="project-deadline">Deadline</label><input id="project-deadline" name="deadline" type="date" required></div>
+              <div class="field"><label for="project-status">Status</label><select id="project-status" name="status" required><option value="Not started">Not started</option><option value="In progress">In progress</option><option value="On hold">On hold</option><option value="Completed">Completed</option></select></div>
+              <div class="field"><label for="project-progress">Progress <span id="progress-value" class="optional-label">0%</span></label><input id="project-progress" name="progress" type="range" min="0" max="100" value="0"></div>
+            </div>
+            <div class="form-actions"><p id="project-status-message" class="notice" role="status" aria-live="polite" hidden></p><button class="button button-secondary" id="cancel-project-button-bottom" type="button">Cancel</button><button id="save-project-button" class="button button-primary" type="submit">Create project <span aria-hidden="true">→</span></button></div>
+          </form>
+
+          <p id="projects-status" class="notice loading-notice" role="status" aria-live="polite">Loading your projects…</p>
+          <div id="project-list" class="project-grid" aria-live="polite"></div>
+          <div id="empty-state" class="empty-state" hidden><span class="empty-art" aria-hidden="true">▦</span><h3>A fresh start</h3><p>No projects yet. Add your first project and bring your next idea to life.</p><button id="empty-create-button" class="button button-primary" type="button">Create your first project <span aria-hidden="true">→</span></button></div>
+        </section>
+        <footer class="app-footer">One step at a time. You’ve got this.</footer>
+      </div>
+    </section>
+  </main>
+
   <script type="module" src="./firebase-auth.js"></script>
 </body>
 </html>
